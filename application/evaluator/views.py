@@ -1,11 +1,8 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render, redirect
 import requests as req
+from application.urls import home
 
-
-def home (request):
-  return render (request, 'home.html')
-
-
+# Create your views here.
 def queryProcessor (request):
 
   if request.method == 'POST':
