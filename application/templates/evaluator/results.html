@@ -1,0 +1,67 @@
+{% extends 'layout.html' %} 
+
+{% block content %}
+  <h1>results page</h1>
+
+  <div class="container">
+    {% if not found %}
+    <div>
+      <h3>NOT found</h3>
+    </div>
+    
+    {% else %}
+    <div>
+      <h2>Security Report Summary</h2>
+      <h5>GRADE: {{ grade }}</h5>
+      <p>Site: {{ site }}</p>
+      <p>IP: {{ ip }}</p>
+      <p>Report Time: {{ date }}</p>
+      <p>headers: 
+        {% for key, value in mains %} 
+          {% if value %}
+            <span class="bg-success">{{ key }}</span>
+          {% else %}
+            <span class="bg-danger">{{ key }}</span>
+          {% endif %}
+        {% endfor %}
+      </p>
+    </div>
+
+    <div>
+      <h2>Supported by</h2>
+      <p>cyberRely</p>
+      <p>Wow, amazing grade! Perform a deeper security analysis of your website and APIs:</p>
+      <button class="btn btn-primary">Try Now</button>
+    </div>
+
+
+    <div>
+      <h2>Raw Headers</h2>
+      {% for key, values in headers %}
+        <p>
+          {{ key }} : {{ values }}
+        </p>
+      {% endfor %}
+    </div>
+
+    {% if grade != 'A+' %}
+    <div>
+      <h2>Missing Headers</h2>
+      {% for key, value in missing %}
+      <p class="bg-danger">
+        {{ key }} : {{ value }}
+      </p>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div>
+      <h2>Upcomming Headers</h2>
+      {% for key, value in upcomming %}
+        <p>{{ key }} : {{ value }}</p>
+      {% endfor %}
+    </div>
+  
+    {% endif %}
+  </div>
+{% endblock %}

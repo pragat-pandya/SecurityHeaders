@@ -5,5 +5,5 @@ from .views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='name'),
-    path('/scanner', include('evaluator.urls')),
+    path('scanner/', include('evaluator.urls')),
 ]
