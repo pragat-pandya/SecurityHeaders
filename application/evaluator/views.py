@@ -4,6 +4,7 @@ from application.urls import home
 import socket
 from datetime import datetime, timezone
 from .packages import *
+from .models import *
 
 # Create your views here.
 def queryProcessor (request):

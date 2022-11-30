@@ -1,20 +1,154 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% load static %} {% block content %}
 
-{% block content %}
-  <form action="{% url 'calculator' %}" method="post">
-    {% csrf_token %}
-    <div class="mb-3 text-center">
-      <h1 class="display-3">Scan your site now</h1>
-      <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4 text-center">
-          <input type="text" class="form-control col-lg-4"  name="url" placeholder="Enter address here">
+<div class="hero">
+  <div class="hero-slide">
+    <div
+      class="img overlay"
+      style="background-image: url({% static 'images/hero_bg_3.jpg' %})"
+    ></div>
+    <div
+      class="img overlay"
+      style="background-image: url({% static 'images/hero_bg_2.jpg' %})"
+    ></div>
+    <div
+      class="img overlay"
+      style="background-image: url({% static 'images/hero_bg_1.jpg' %})"
+    ></div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-9 text-center">
+        <h1 class="heading" data-aos="fade-up">
+          Easiest way to find vulnerabilities in your website!
+        </h1>
+        <form
+          action="{% url 'calculator' %}" method="post"
+          class="narrow-w form-search d-flex align-items-stretch mb-3"
+          data-aos="fade-up"
+          data-aos-delay="200"
+          
+        > 
+        {% csrf_token %}
+          <input
+            type="text"
+            class="form-control px-4"
+            placeholder="Enter address here. e.g.,https://yoursite.com"
+            name="url"
+          />
+          <button type="submit" class="btn btn-primary mx-1">Scan</button>
+        </form>
+        <div class="text-center">
+          <a class="btn btn-success" href="" >Deep Scan</a>
         </div>
-        <div class="col-lg-4"></div>
       </div>
-      <button type="submit" class="btn btn-lg btn-primary mt-2">Scan</button>
+      
     </div>
-    
-     
-  </form>
+  </div>
+</div>
+
+
+<div class="section">
+      
+        
+
+  <div
+    id="property-nav"
+    class="controls"
+    tabindex="0"
+    aria-label="Carousel Navigation"
+  >
+    <span
+      class="prev"
+      data-controls="prev"
+      aria-controls="property"
+      tabindex="-1"
+      >Prev</span
+    >
+    <span
+      class="next"
+      data-controls="next"
+      aria-controls="property"
+      tabindex="-1"
+      >Next</span
+    >
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<section class="features-1">
+<div class="container">
+<div class="row">
+<div class="col-12 col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+<div class="box-feature">
+  <span class="flaticon-house"></span>
+  <h3 class="mb-3">Our Properties</h3>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Voluptates, accusamus.
+  </p>
+  <p><a href="#" class="learn-more">Learn More</a></p>
+</div>
+</div>
+<div class="col-12 col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+<div class="box-feature">
+  <span class="flaticon-building"></span>
+  <h3 class="mb-3">Property for Sale</h3>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Voluptates, accusamus.
+  </p>
+  <p><a href="#" class="learn-more">Learn More</a></p>
+</div>
+</div>
+<div class="col-12 col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+<div class="box-feature">
+  <span class="flaticon-house-3"></span>
+  <h3 class="mb-3">Real Estate Agent</h3>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Voluptates, accusamus.
+  </p>
+  <p><a href="#" class="learn-more">Learn More</a></p>
+</div>
+</div>
+<div class="col-12 col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
+<div class="box-feature">
+  <span class="flaticon-house-1"></span>
+  <h3 class="mb-3">House for Sale</h3>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Voluptates, accusamus.
+  </p>
+  <p><a href="#" class="learn-more">Learn More</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+<!-- <form action="{% url 'calculator' %}" method="post">
+  {% csrf_token %}
+  <div class="mb-3 text-center">
+    <h1 class="display-3">Scan your site now</h1>
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4 text-center">
+        <input
+          type="text"
+          class="form-control col-lg-4"
+          name="url"
+          placeholder="Enter address here"
+        />
+      </div>
+      <div class="col-lg-4"></div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-primary mt-2">Scan</button>
+  </div>
+</form> -->
 {% endblock %}
