@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import queryProcessor
+from .views import queryProcessor,deep, dScan
 
 urlpatterns = [
-    path('', queryProcessor, name="calculator")
+    path('', queryProcessor, name="calculator"),
+    path('enableDeepScanning/', deep, name='deep'),
+    path('DeepScannig/', dScan, name='dScan')
 ]

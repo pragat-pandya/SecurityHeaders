@@ -20,10 +20,10 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-lg-9 text-center">
         <h1 class="heading" data-aos="fade-up">
-          Easiest way to find vulnerabilities in your website!
+          You have enabled Deep-Scanning now!
         </h1>
         <form
-          action="{% url 'calculator' %}" method="post"
+          action="{% url 'dScan' %}" method="post"
           class="narrow-w form-search d-flex align-items-stretch mb-3"
           data-aos="fade-up"
           data-aos-delay="200"
@@ -36,32 +36,11 @@
             placeholder="Enter address here. e.g.,https://yoursite.com"
             name="url"
           />
-          <button type="submit" class="btn btn-primary mx-1">Scan</button>
+          <button type="submit" class=" btn btn-primary mx-1">Deep&nbsp;Scan</button>
         </form>
         {% include 'includes/alerts.html' %}
         <div class="text-center">
-          <button data-bs-toggle="collapse" data-bs-target="#deepForm" class="btn btn-success">Deep Scan</button>
-          <div class="collapse bg-success my-2" id="deepForm">
-            
-              <form class="px-4 py-3" action="{% url 'deep' %}" method="post">
-                {% csrf_token %}
-                <div class="form-floating mb-3">
-                  <input type="text" name="fname" class="form-control" id="floatingInput" placeholder="first name">
-                  <label for="floatingInput">First Name</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="text" name="lname" class="form-control" id="floatingInput" placeholder="last name">
-                  <label for="floatingInput">Last Name</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="email" name="email" class="form-control required" id="floatingInput" placeholder="name@example.com">
-                  <label for="floatingInput">Email address</label>
-                </div>
-                
-                <button type="submit" class="btn btn-warning">Go Deeper</button>
-              </form>
-            </div>
-          </div>
+          <a class="btn btn-warning" href="{% url 'home' %}" >Light Scan</a>
         </div>
       </div>
       

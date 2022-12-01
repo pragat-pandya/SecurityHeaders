@@ -6,6 +6,7 @@ class Lead (models.Model):
   last_name = models.CharField(max_length=100)
   email = models.EmailField(unique=True, primary_key=True)
   date_time = models.DateTimeField(auto_now_add=True)
+  offers_alerts = models.BooleanField(default=True)
 
 
 class Scan (models.Model):
@@ -14,3 +15,6 @@ class Scan (models.Model):
   date_time = models.DateTimeField(auto_now_add=True, primary_key=True)
   is_private = models.BooleanField(default=False)
   client_details = models.ForeignKey(Lead, on_delete=models.DO_NOTHING, null=True)
+  grade = models.CharField(max_length=2, default='F')
+  host_name = models.CharField(max_length=100, default='')
+  is_deep = models.BooleanField(default=False)
