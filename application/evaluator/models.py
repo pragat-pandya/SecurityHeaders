@@ -18,3 +18,8 @@ class Scan (models.Model):
   grade = models.CharField(max_length=2, default='F')
   host_name = models.CharField(max_length=100, default='')
   is_deep = models.BooleanField(default=False)
+
+
+class FAQ (models.Model):
+  question = models.CharField(max_length=500)
+  ans = models.CharField(max_length=5000)

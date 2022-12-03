@@ -2,26 +2,45 @@
       <div class="container">
         <div class="menu-bg-wrap">
           <div class="site-navigation">
-            <a href="index.html" class="logo m-0 float-start">SecuritySearch</a>
+            
+            <div class="text-light d-inline-block">
+              <a href="{% url 'home' %}" class="logo mb-0">SecuritySearch</a>
+              <div class="mb-0">
+                <span class="d-block text-warning">
+                  <span class="align-top">Powered by</span> 
+                  <a href="https://www.cybersrely.com/" target="_blank" class="logo">CyberRely</a>
+                </span>
+                
+              </div>
 
+              
+            </div>
             <ul
-              class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
+              class="js-clone-nav d-none d-lg-inline-block float-end text-start site-menu "
             >
-              <li class="active"><a href="index.html">Home</a></li>
+              <li class="active"><a href="{% url 'home' %}">Home</a></li>
               <li class="has-children">
-                <a href="properties.html">About</a>
-                <ul class="dropdown">
-                  <li><a href="#">Who, Why & How</a></li>
-                  <li><a href="#">FAQs</a></li>
-                  <li class="has-children"><a href="#">Sponsors</a></li>
+
+                <a href="#about" class="d-lg-none d-xl-none d-xxl-none d-sm-block d-md-block d-xs-block" data-bs-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">About</a>
+                <ul class="collapse d-lg-none d-xl-none d-xxl-none d-sm-block d-md-block d-xs-block" id="about">
+                  <li><a href="{% url 'www' %}" class="{% if '/WhoWhyHow/' == request.path %}active{% endif %}">Who, Why & How</a></li>
+                  <li><a href="{% url 'faq' %}" class="{% if '/FrequentlyAskedQuestions/' == request.path %}active{% endif %}" >FAQs</a></li>
+                  <li class="has-children"><a href="{% url 'sponsor' %}" class="{% if '/sponsors/' == request.path %}active{% endif %}">Sponsors</a></li>
+                </ul>
+
+                <a href="#" class="d-lg-block d-xl-block d-xxl-block d-none">About</a>
+                <ul class="dropdown d-lg-block d-xl-block d-xxl-block d-none">
+                  <li><a href="{% url 'www' %}">Who, Why & How</a></li>
+                  <li><a href="{% url 'faq' %}">FAQs</a></li>
+                  <li><a href="{% url 'sponsor' %}" class="{% if '/sponsors/' == request.path %}active{% endif %}">Sponsors</a></li>
                 </ul>
               </li>
-              <li><a href="services.html">Donate</a></li>
+              <li><a href="{% url 'donate' %}" class="{% if '/donate/' == request.path %}active{% endif %}">Donate</a></li>
             </ul>
 
             <a
               href="#"
-              class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+              class="burger light me-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
               data-toggle="collapse"
               data-target="#main-navbar"
             >
@@ -30,4 +49,6 @@
           </div>
         </div>
       </div>
+      
+            
     </nav>

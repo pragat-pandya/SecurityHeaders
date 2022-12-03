@@ -8,6 +8,8 @@ urlpatterns = [
     path('sponsors/', sponsor, name='sponsor'),
     path('donate/', donate, name='donate'),
     path('FrequentlyAskedQuestions', faqs, name='faq'),
+    path('WhoWhyHow/', www, name='www'),
+
     path('scanner/', include('evaluator.urls')),
     
 ]

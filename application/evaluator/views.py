@@ -14,6 +14,9 @@ from .models import *
 def queryProcessor (request):
   if request.method == 'POST':
     domain = request.POST['url'].strip()
+    if domain == '':
+      messages.error(request, "Please enter an address to search!")
+      return redirect ('home')
     # FIX UP SCHEME of URL
     domain = getDomain(domain)
     
@@ -26,7 +29,7 @@ def queryProcessor (request):
       })
 
     # DOMAIN VALID CASE  
-    else: 
+    elif check != -1: 
 
       # HOST-NAME
       host = getHostName(domain)
@@ -50,9 +53,6 @@ def queryProcessor (request):
       s.grade = grade
       s.host_name = host
       s.save()
-
-
-
       return render (request, 'evaluator/results.html', {
         'deep' : False,
         'found' : True,
@@ -65,8 +65,9 @@ def queryProcessor (request):
         'missing' :  getMissing(check).items(),
         'upcomming' : upcomming.items()
       })
-  else:
-    return redirect('home')
+    else:
+      return redirect ('home')  
+  return render (request, 'home.html')
 
 def deep (request):
   if request.method == 'POST':

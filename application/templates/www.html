@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+  <section class="" style="margin-top: 175px;">
+    <h1 class="display-4">Who?</h1>
+    <img src="{% static 'images/person_3-min.jpg' %}" alt="Profile Photo" class="float-end img-fluid" width="200px" height="200px">
+    <p class="my-3 fw-light fs-5">
+      Security Headers was created by me, Scott Helme. I'm an Information Security Consultant and blogger based in the UK and you can regularly find me writing on my blog at <a href="https://scotthelme.co.uk" target="_blank">scotthelme.co.uk</a> or you can follow me on Twitter <a target="_blank" href="https://twitter.com/pandya_pragat">@Scott_Helme</a>.
+    </p>
+    <p class="mt-5 fw-light fs-5">  
+      I built Security Headers after deploying security headers like CSP and HSTS to my own site. I wanted a quick and easy way to check if other sites were using these headers and I figured I'd turn it into a useful tool for everyone to use!
+    </p>
+  </section>
+
+  <section class="mt-5">
+    <h1 class="display-4 my-3">Why?</h1>
+
+    <p class="my-3 fw-light fs-5">
+      There are services out there that will analyse the HTTP response headers of other sites but I also wanted to add a rating system to the results. The HTTP response headers that this site analyses provide huge levels of protection and it's important that sites deploy them. Hopefully, by providing an easy mechanism to assess them, and further information on how to deploy missing headers, we can drive up the usage of security based headers across the web. 
+    </p>
+  </section>
+
+  <section class="mt-5">
+    <h1 class="display-4">How?</h1>
+
+    <p class="mt-3 fw-light fs-5">
+      The site is written in PHP using the CodeIgniter MVC framework and powered by DigitalOcean Droplets. You can use my DigitalOcean referal link to get $10 in free credit and help support this service! The site is entirely funded out of my own pocket and supported by sponsors when we have one, so if you'd like to help support it, please get in touch!
+    </p>
+  </section>
+  
+
+  
+{% endblock %}

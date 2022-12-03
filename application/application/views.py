@@ -1,3 +1,4 @@
+from urllib.robotparser import RequestRate
 from django.shortcuts import render
 
 
@@ -12,3 +13,6 @@ def faqs (request):
 
 def donate (request):
   return render (request, 'donate.html')
+
+def www (request):
+  return render (request, 'www.html')

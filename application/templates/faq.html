@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+  <section class="" style="margin-top: 175px;">
+    <h1 class="display-4">Frequently Asked Questions</h1>
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>What does my score mean?
+    </p>
+    <p class="ms-3 my-3 fw-light fs-5">
+      We try and provide a fair score for all sites that we analyse and your score is representative of how many security based HTTP response headers your site issues.
+     </p>
+
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>What grades can my site get?
+    </p>
+    <p class="ms-3 my-3 fw-light fs-5">
+      Your site can score from an A+ grade down to an F grade. The R grade means the site responded with a redirect and you should follow the redirects using the link provided. There is more information on the scores here.
+    </p>
+
+
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>How do I get an A+ grade?
+    </p>
+    <p class="ms-3 my-3 fw-light fs-5">
+      To get an A+ grade your site needs to issue all of the HTTP response headers that we check for. This indicates a high level of commitment to improving security for your visitors.
+    </p>
+
+
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>What headers do you check for?
+    </p>
+    <p class="ms-3 my-3 fw-light fs-5">
+      Over a HTTP connection we check for Content-Security-Policy, X-Content-Type-Options, X-Frame-Options and X-XSS-Protection. Over a HTTPS connection we check for 2 additional headers which are Strict-Transport-Security and Public-Key-Pins.
+    </p>
+
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>What headers do you check for?
+    </p>
+    <p class="ms-3 my-3 fw-light fs-5">
+      Over a HTTP connection we check for Content-Security-Policy, X-Content-Type-Options, X-Frame-Options and X-XSS-Protection. Over a HTTPS connection we check for 2 additional headers which are Strict-Transport-Security and Public-Key-Pins.
+    </p>
+
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>What headers do you check for?
+    </p>
+    <p class="ms-3 my-3 fw-light fs-5">
+      Over a HTTP connection we check for Content-Security-Policy, X-Content-Type-Options, X-Frame-Options and X-XSS-Protection. Over a HTTPS connection we check for 2 additional headers which are Strict-Transport-Security and Public-Key-Pins.
+    </p>
+
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>What do the blue headers mean?
+    </p>
+    <p class="ms-3 my-3 fw-light fs-5">
+      The blue headers are additional information that a site owner could look at. These are things like the value of the Server header or other platform specific headers like X-Powered-By divulging information about the software running on the server.
+    </p>
+
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>Can I raise a bug or request a feature?
+    </p>
+    <p class="ms-3 my-3 fw-light fs-5">
+      You can raise bugs or request new features right <a href="https://github.com/pragat-pandya" target="_blank">here!</a> 
+    </p>
+
+    <p class="ms-3 mt-5 fw-light fs-5 text-dark">
+      <i class="icon-check me-3"></i>Can we allow your IP addresses for scans?
+    <p class="ms-3 my-3 fw-light fs-5">
+      These are the IPv4 and IPv6 addresses we use for scans if you'd like to allow them.
+    </p>
+
+  </section>
+
+  
+
+  
+{% endblock %}
