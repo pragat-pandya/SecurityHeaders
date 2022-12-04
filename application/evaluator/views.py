@@ -23,6 +23,7 @@ def queryProcessor (request):
     check = checkSite(domain)
     if check == -1:
       # Django Alerts Configurations
+      messages.error(request, "No host found at the given address!!")
       return render  (request, 'evaluator/results.html', {
         'found' : False,
         'site' : domain
@@ -142,7 +143,7 @@ def dScan (request):
         'headers' : getHeaders(allHeaders).items(),
         'date' : t,
         'missing' :  getMissing(check).items(),
-        'upcomming' : upcomming.items()
+        'upcomming' : upcomming.items(),
       })
   else:
     return redirect('deep')

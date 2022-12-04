@@ -1,7 +1,13 @@
 {% extends 'layout.html' %} 
 
+{% block style %}
+.raws {
+  word-break: break-all;
+}
+{% endblock %}
+
 {% block content %}
-  <h1>results page</h1>
+  <h1 style="margin-top:175px;"></h1>
 
   <div class="container">
     {% if not found %}
@@ -9,59 +15,139 @@
       <h3>NOT found</h3>
     </div>
     
-    {% else %}
-    <div>
-      <h2>Security Report Summary</h2>
-      <h5>GRADE: {{ grade }}</h5>
-      <p>Site: {{ site }}</p>
-      <p>IP: {{ ip }}</p>
-      <p>Report Time: {{ date }}</p>
-      <p>headers: 
-        {% for key, value in mains %} 
-          {% if value %}
-            <span class="bg-success">{{ key }}</span>
-          {% else %}
-            <span class="bg-danger">{{ key }}</span>
-          {% endif %}
-        {% endfor %}
-      </p>
-    </div>
+    {% else %}      
+      <div class="card bg-light">
+        <div class="card-body">
+          <h4 class="border-bottom">Security Report Summary</h4>
 
-    <div>
-      <h2>Supported by</h2>
-      <p>cyberRely</p>
-      <p>Wow, amazing grade! Perform a deeper security analysis of your website and APIs:</p>
-      <button class="btn btn-primary">Try Now</button>
-    </div>
+          <div class="row my-5">
+            <div class="col-lg-3 col-xl-3 col-xxl-3 col-xs-12 col-sm-12 col-md-4 text-center">
+              <div class="mt-4 py-3 ">
+                <span class="display-2 w-100 p-2 text-light border-dark rounded-3 {% if grade == 'A+' or grade == 'A' %} bg-success {% endif %}
+                {% if grade == 'B' or grade == 'C' %} bg-primary {% endif %}
+                {% if grade == 'D' or grade == 'E' %} bg-warning {% endif %}
+                {% if grade == 'F' %} bg-danger {% endif %}
+              ">{{ grade }}</span>
+              </div>
+            </div>
+            <div class="col-9 col-xs-12 col-sm-12 col-md-8">
+              <table class="table">
+                <tbody>
+                  <tr class="justify-content-start">
+                    <th scope="row">Site:</th>
+                    <td class=""><a href="{{ site }}" target="_blank">{{ site }}</a></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">IP Address:</th>
+                    <td>{{ip}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Report Time:</th>
+                    <td colspan="">{{date}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Headers:</th>
+                    <td colspan="">
+                        <p class="list-group list-group-horizontal">
+                          {% for key, value in mains %} 
+                              {% if value %}
+                              <div class="d-inline-block text-start mx-2 bg-success my-1 text-white rounded-pill p-1">
+                                <i class="icon-check me-2"></i>{{ key }}
+                              </div>
+                              {% else %}
+                              <div class="d-inline-block text-start mx-2 bg-danger my-1 text-white rounded-pill p-1">
+                                <i class="icon-cancel me-2"></i>{{ key }}
+                              </div>
+                              {% endif %}
+                          {% endfor %}                   
+                          </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="card bg-light mt-3">
+        <div class="card-body">
+          <h4 class="border-bottom">Supported By</h4>
 
-    <div>
-      <h2>Raw Headers</h2>
-      {% for key, values in headers %}
-        <p>
-          {{ key }} : {{ values }}
-        </p>
-      {% endfor %}
-    </div>
+          <div class="row mt-3">
+            <div class="col-lg-3 col-xl-3 col-xxl-3 col-md-6 col-sm-12 col-xs-12">
+              <span class="fw-bold text-dark float-start">CyberRely</span>
+            </div>
+            <div class="col-lg-6 col-xl-6 col-xxl-6 col-md-12 col-sm-12 col-xs-12"><span class="ms-5">let’s perform a deeper security analysis of your site and APIs:</span></div>
+            <div class="col-lg-3 col-xl-3 col-xxl-3 col-md-12 col-sm-12 col-xs-12"><a class="btn btn-success float-end" href="https://www.cybersrely.com/" target="_blank">Start Now</a></div>
+          </div>
+        </div>
+      </div>
 
-    {% if grade != 'A+' %}
-    <div>
-      <h2>Missing Headers</h2>
-      {% for key, value in missing %}
-      <p class="bg-danger">
-        {{ key }} : {{ value }}
-      </p>
-      {% endfor %}
-    </div>
-    {% endif %}
+      {% if deep %}
+      <div class="card bg-light mt-3">
+        <div class="card-body">
+          <h4 class="border-bottom">Raw Headers</h4>
+            <div class="row" id="noFlow">
+              <table class="table" id="raw">
+                <tbody>
+                  {% for key, values in headers %}
+                  <tr class="w-100">
+                    <th scope="row">{{ key }}:</th>
+                    <td class="raws">
+                      <p class="text-wrap">{{ values }}</p>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
 
-    <div>
-      <h2>Upcomming Headers</h2>
-      {% for key, value in upcomming %}
-        <p>{{ key }} : {{ value }}</p>
-      {% endfor %}
-    </div>
-  
+      {% if grade != 'A+' %}
+      <div class="card bg-light mt-3">
+        <div class="card-body">
+          <h4 class="border-bottom">Missing Headers</h4>
+            <div class="row" id="noFlow">
+              <table class="table">
+                <tbody>
+                  {% for key, value in missing %}
+                  <tr class="justify-content-center">
+                    <th scope="row" class="text-danger">{{ key }}:</th>
+                    <td class="text-wrap"><p class="text-wrap">{{ value }}</p></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+      
+      <div class="card bg-light mt-3">
+        <div class="card-body">
+          <h4 class="border-bottom">Upcomming Headers</h4>
+            <div class="row" id="noFlow">
+              <table class="table">
+                <tbody>
+                  {% for key, value in upcomming %}
+                  <tr class="justify-content-center">
+                    <th scope="row" class="">{{ key }}:</th>
+                    <td class="text-wrap"><p class="text-wrap">{{ value }}</p></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>      
     {% endif %}
   </div>
 {% endblock %}
