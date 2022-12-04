@@ -1,5 +1,8 @@
 import requests as req
 from urllib.parse import urlparse
+from urllib3.exceptions import InsecureRequestWarning
+from urllib3 import disable_warnings
+
 
 missingDiscriptions = {
   'Content-Security-Policy' : 'is an effective measure to protect your site from XSS attacks. By whitelisting sources of approved content, you can prevent the browser from loading malicious assets.',
@@ -42,9 +45,10 @@ def getHostName(domain):
 # RETURNS: Dict('header':True/False) if domain valid
 # ELSE: 
 def checkSite (domain):
-  
+  disable_warnings(InsecureRequestWarning)
   try:
-    headers = req.get(domain).headers
+    h = req.get(domain)
+    headers = h.headers
     myHeaders = {}
   
     #1

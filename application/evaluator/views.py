@@ -23,11 +23,8 @@ def queryProcessor (request):
     check = checkSite(domain)
     if check == -1:
       # Django Alerts Configurations
-      messages.error(request, "No host found at the given address!!")
-      return render  (request, 'evaluator/results.html', {
-        'found' : False,
-        'site' : domain
-      })
+      messages.error(request, "No host found at the given address!! OR This site do not support some headers we")
+      return redirect('home')
 
     # DOMAIN VALID CASE  
     elif check != -1: 
@@ -48,12 +45,20 @@ def queryProcessor (request):
       t = datetime.now(timezone.utc)
 
       # Make a Scan table entery
-      s = Scan()
-      s.url = domain
-      s.ip = origin
-      s.grade = grade
-      s.host_name = host
-      s.save()
+      try:
+        s = Scan.objects.get(url=domain)
+        s.url = domain
+        s.ip = origin
+        s.grade = grade
+        s.host_name = host
+        s.save()
+      except:
+        s = Scan()
+        s.url = domain
+        s.ip = origin
+        s.grade = grade
+        s.host_name = host
+        s.save()
       return render (request, 'evaluator/results.html', {
         'deep' : False,
         'found' : True,
@@ -91,7 +96,53 @@ def deep (request):
         l.email = email
         l.save()
       return redirect('dScan')
-  return render(request, 'evaluator/deep.html')
+  else:
+    # GRAND TOTAL
+    s = Scan.objects.all()
+    total = s.count()
+
+    # Q(grade__gte='A+') | Q(grade__gte='A')
+    aPlus = s.filter(grade='A+')
+    aPlusTotal = aPlus.count()
+
+    a = s.filter(grade='A')
+    aCount = a.count()
+
+    b = s.filter(grade='B')
+    bCount = b.count()
+
+    c = s.filter(grade='C')
+    cCount = c.count()
+    
+    d = s.filter(grade='D')
+    dCount = d.count()
+
+    e = s.filter(grade='E')
+    eCount = e.count()
+
+    f = s.filter(grade='F')
+    fCount = f.count()
+
+
+    recent = s.order_by('date_time__minute').distinct()[:8]
+
+    hof = s.order_by('date_time__minute').filter(grade='A+').distinct()[:8]
+
+    hos = s.order_by('date_time__minute').filter(grade='F').distinct()[:8]
+
+    return render (request, 'evaluator/deep.html', {
+      'gt' : total,
+      'apt': aPlusTotal,
+      'at' : aCount,
+      'bt' : bCount, 
+      'ct' : cCount,
+      'dt' : dCount,
+      'et' : eCount,
+      'ft' : fCount,
+      'recent' : recent,
+      'hof' : hof,  
+      'hos' : hos  
+    })
 
 
 def dScan (request):
@@ -148,3 +199,37 @@ def dScan (request):
   else:
     return redirect('deep')
 
+
+def showResult(request, site):
+  #try:
+    s = Scan.objects.get(ip=site)    
+    domain = s.url
+    # HOST-NAME
+    host = s.host_name
+    # IP
+    origin = s.ip
+    # GRADE
+    grade = s.grade
+    # ALl headers
+    allHeaders = req.get(domain).headers
+
+    # DATE-time
+    t = s.date_time
+
+    return render(request, 'evaluator/results.html', {
+      'deep' : s.is_deep,
+      'found' : True,
+      'grade' : grade,
+      'mains' : checkSite(domain).items(),
+      'site' : domain,
+      'ip' : origin,
+      'headers' : getHeaders(allHeaders).items(),
+      'date' : t,
+      'missing' :  getMissing(checkSite(domain)).items(),
+      'upcomming' : upcomming.items()
+    })
+
+    
+  #except:
+    messages.error(request, 'Sorry! This scan is not currently available!!')
+    return redirect('home')

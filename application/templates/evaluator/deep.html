@@ -80,6 +80,151 @@
 </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="features-1">
+  <div class="container">
+  <div class="row">
+  <div class="col-12 col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+  <div class="box-feature bg-light">
+    <img src="{% static 'images/all.png' %}" alt="" width="100px" height="auto">
+    <h3 class="mb-3">
+      <span class="learn-more">Grand Totals</span>
+    </h3>
+    <table class="table">
+      
+      <tbody class="text-start">
+        <tr>
+          <td class="text-success">A+</td>
+          <th>{{apt}}</th>
+        </tr>
+        <tr>
+          <td class="text-success">A</td>
+          <th>{{at}}</th>
+        </tr>
+        <tr>
+          <td class="text-primary">B</td>
+          <th>{{bt}}</th>
+        </tr>
+        <tr>
+          <td class="text-primary">C</td>
+          <th>{{ct}}</th>
+        </tr>
+        <tr>
+          <td class="text-warning">D</td>
+          <th>{{dt}}</th>
+        </tr>
+        <tr>
+          <td class="text-warning">E</td>
+          <th>{{et}}</th>
+        </tr>
+        <tr>
+          <td class="text-danger">F</td>
+          <th>{{ft}}</th>
+        </tr>
+        <tr>
+          <td>Grand Total</td>
+          <th>{{gt}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  
+  
+  <div class="col-12 col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+    <div class="box-feature bg-light">
+      <img src="{% static 'images/recent.png' %}" alt="" width="100px" height="auto">
+      <h3 class="mb-3">
+        <span class="learn-more">Recent Scans</span>
+      </h3>
+      <table class="table text-start">
+      
+      <tbody>
+          {% for s in recent %}
+              <tr class="text-wrap">
+                <td class=""><a href="{% url 'show' site=s.ip %}" target="_blank">{{s.url}}</a></td>
+                <th class="{% if s.grade == 'A+' or s.grade == 'A' %} text-success {% endif %}
+                {% if s.grade == 'B' or s.grade == 'C' %} text-primary {% endif %}
+                {% if s.grade == 'D' or s.grade == 'E' %} text-warning {% endif %}
+                {% if s.grade == 'F' %} text-danger {% endif %}">{{ s.grade }}</th>
+              </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div class="col-12 col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+    <div class="box-feature bg-light">
+      <img src="{% static 'images/fame.png' %}" alt="" width="100px" height="auto">
+      <h3 class="mb-3">
+        <span class="learn-more">Hall Of Fame</span>
+      </h3>
+      <table class="table text-start">
+      
+      <tbody>
+          {% for s in hof %}
+              <tr class="text-wrap">
+                <td class=""><a href="{% url 'show' site=s.ip %}" target="_blank">{{s.url}}</a></td>
+                <th class="{% if s.grade == 'A+' or s.grade == 'A' %} text-success {% endif %}
+                {% if s.grade == 'B' or s.grade == 'C' %} text-primary {% endif %}
+                {% if s.grade == 'D' or s.grade == 'E' %} text-warning {% endif %}
+                {% if s.grade == 'F' %} text-danger {% endif %}">{{ s.grade }}</th>
+              </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  <div class="col-12 col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+    <div class="box-feature bg-light">
+      <img src="{% static 'images/bad.png' %}" alt="" width="100px" height="auto">
+      <h3 class="mb-3">
+        <span class="learn-more">Hall Of Shame</span>
+      </h3>
+      <table class="table">
+      
+      <tbody class="text-start">
+        {% for s in hos %}
+          <tr class="text-wrap">
+            <td class=""><a href="{% url 'show' site=s.ip %}" target="_blank">{{s.url}}</a></td>
+            <th class="{% if s.grade == 'A+' or s.grade == 'A' %} text-success {% endif %}
+            {% if s.grade == 'B' or s.grade == 'C' %} text-primary {% endif %}
+            {% if s.grade == 'D' or s.grade == 'E' %} text-warning {% endif %}
+            {% if s.grade == 'F' %} text-danger {% endif %}">{{ s.grade }}</th>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </div>
+  
+  </section>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="features-1">
 <div class="container">
 <div class="row">

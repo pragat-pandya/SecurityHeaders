@@ -10,9 +10,9 @@ class Lead (models.Model):
 
 
 class Scan (models.Model):
-  url = models.URLField(max_length=150, db_index=True, blank=True)
+  url = models.URLField(max_length=150, db_index=True, primary_key=True)
   ip = models.GenericIPAddressField()
-  date_time = models.DateTimeField(auto_now_add=True, primary_key=True)
+  date_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
   is_private = models.BooleanField(default=False)
   client_details = models.ForeignKey(Lead, on_delete=models.DO_NOTHING, null=True)
   grade = models.CharField(max_length=2, default='F')

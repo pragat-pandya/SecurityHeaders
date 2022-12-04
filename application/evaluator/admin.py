@@ -6,7 +6,7 @@ class LeadsManager (admin.ModelAdmin):
   list_display = ('first_name', 'last_name', 'email', 'date_time')
 
 class ScansManager (admin.ModelAdmin):
-  list_display = ('ip', 'url', 'date_time', 'is_private', 'client_details')
+  list_display = ('ip', 'url', 'date_time', 'grade', 'client_details')
 
 class FAQManager (admin.ModelAdmin):
   list_display = ('question', 'ans')
