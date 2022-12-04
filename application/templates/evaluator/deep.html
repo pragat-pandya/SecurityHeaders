@@ -153,7 +153,7 @@
       <tbody>
           {% for s in recent %}
               <tr class="text-wrap">
-                <td class=""><a href="{% url 'show' site=s.ip %}" target="_blank">{{s.url}}</a></td>
+                <td class=""><a href="{% url 'show' site=s.ip %}">{{ s.url|truncatechars:30 }}</a></td>
                 <th class="{% if s.grade == 'A+' or s.grade == 'A' %} text-success {% endif %}
                 {% if s.grade == 'B' or s.grade == 'C' %} text-primary {% endif %}
                 {% if s.grade == 'D' or s.grade == 'E' %} text-warning {% endif %}
@@ -175,7 +175,7 @@
       <tbody>
           {% for s in hof %}
               <tr class="text-wrap">
-                <td class=""><a href="{% url 'show' site=s.ip %}" target="_blank">{{s.url}}</a></td>
+                <td class=""><a href="{% url 'show' site=s.ip %}">{{ s.url|truncatechars:30 }}</a></td>
                 <th class="{% if s.grade == 'A+' or s.grade == 'A' %} text-success {% endif %}
                 {% if s.grade == 'B' or s.grade == 'C' %} text-primary {% endif %}
                 {% if s.grade == 'D' or s.grade == 'E' %} text-warning {% endif %}
@@ -197,7 +197,7 @@
       <tbody class="text-start">
         {% for s in hos %}
           <tr class="text-wrap">
-            <td class=""><a href="{% url 'show' site=s.ip %}" target="_blank">{{s.url}}</a></td>
+            <td class=""><a href="{% url 'show' site=s.ip %}">{{ s.url|truncatechars:30 }}</a></td>
             <th class="{% if s.grade == 'A+' or s.grade == 'A' %} text-success {% endif %}
             {% if s.grade == 'B' or s.grade == 'C' %} text-primary {% endif %}
             {% if s.grade == 'D' or s.grade == 'E' %} text-warning {% endif %}

@@ -35,7 +35,7 @@ def home (request):
 
   recent = s.order_by('date_time__minute').distinct()[:8]
 
-  hof = s.order_by('date_time__minute').filter(grade='A+').distinct()[:8]
+  hof = (aPlus.order_by('date_time__minute').distinct()[:4] |  s.order_by('date_time__minute').filter(grade='A').distinct()[:4]).distinct()
 
   hos = s.order_by('date_time__minute').filter(grade='F').distinct()[:8]
 

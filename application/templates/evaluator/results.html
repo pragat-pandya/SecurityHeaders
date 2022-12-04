@@ -63,6 +63,49 @@
                           </p>
                     </td>
                   </tr>
+                  <tr>
+                    <th scope="row"></th>
+                    <td>
+                      <a href="" type="button" class="btn btn-outline-success float-end" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
+                        <span class="fw-bold">Perform Deep Scan</span>
+                      </a>
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Please fill this form to enable deep scaning.</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="px-4 py-3" action="{% url 'deep' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-floating mb-3">
+                                  <input type="text" name="fname" class="form-control" name="fname" placeholder="first name">
+                                  <label>First Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                  <input type="text" name="lname" class="form-control" name="lname" placeholder="last name">
+                                  <label>Last Name</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                  <input type="email" name="email" class="form-control required" required name="email" placeholder="name@example.com">
+                                  <label>Email address</label>
+                                </div>
+                              
+                            </div>
+                            <div class="modal-footer">
+                              {% include 'includes/alerts.html' %}
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-success">Enable Deep Search</button>
+                            </div>
+                          </form>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
